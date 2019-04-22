@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/machendos/kpi-rozklad/issues"
   },
-  "homepage": "https://github.com/machendos/kpi-rozklad#readme"
+  "homepage": "https://github.com/machendos/kpi-rozklad#readme",
+  "dependencies": {
+    "jsdom": "^15.0.0",
+    "node-fetch": "^2.3.0",
+    "node-telegram-bot-api": "^0.30.0",
+    "querystring": "^0.2.0"
+  }
 }
