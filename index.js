@@ -20,10 +20,6 @@ const kpiRozkladURI =
 
 const bot = createBotInstance(TELEGRAM_TOKEN);
 
-// bot.on('message', (msg) => {
-//   msg.sendMessage(msg.shatId, 'hell');
-// });
-
 bot('now', (id, data) => {
   const group = data;
 
