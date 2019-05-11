@@ -37,4 +37,3 @@ bot('now', async (id, data) => {
 
   bot.sendMessage(id, subjects.join('\n'));
 });
-console.log(new Date());
