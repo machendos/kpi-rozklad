@@ -1,10 +1,9 @@
 'use strict';
 
-const { JSDOM } = require('jsdom');
 const querystring = require('querystring');
-const fetch = require('node-fetch');
 const hiddenParametres =  require(__dirname + '/hidden-parametres.json');
 const createBotInstance = require(__dirname + '/src/bot-interaction.js');
+const DOM = require(__dirname + '/src/create-js-dom');
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 
@@ -20,26 +19,22 @@ const kpiRozkladURI =
 
 const bot = createBotInstance(TELEGRAM_TOKEN);
 
-bot('now', (id, data) => {
+bot('now', async (id, data) => {
   const group = data;
 
-  fetch(kpiRozkladURI, {
-    method: 'POST',
-    headers: { 'content-type': 'application/x-www-form-urlencoded' },
-    body: querableParametres(group)
-  })
-    .then(res => res.text())
-    .then(body => {
+  const groupRozklad = await new DOM(
+    kpiRozkladURI,
+    querableParametres(group)
+  );
 
-      const dom = new JSDOM(body);
-      const subjects = [
-        ...dom
-          .window
-          .document
-          .getElementsByTagName('a')
-      ]
-        .map(element => element.title);
+  const subjects = [
+    ...groupRozklad
+      .window
+      .document
+      .getElementsByTagName('a')
+  ]
+    .map(element => element.title);
 
-      bot.sendMessage(id, subjects.join('\n'));
-    });
+  bot.sendMessage(id, subjects.join('\n'));
 });
+console.log(new Date());
