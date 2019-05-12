@@ -18,4 +18,12 @@ function DOM(url, parametres) {
 
 }
 
+DOM.prototype.getById = function(id) {
+  return this.dom.getElementById(id);
+};
+
+DOM.prototype.getByTag = function(tag) {
+  return [...this.dom.getElementsByTagName(tag)];
+}; 
+
 module.exports = DOM;
