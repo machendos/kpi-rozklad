@@ -23,8 +23,6 @@ rozklad.group = async group => {
     querableParametres(group)
   );
 
-  // console.log([...groupRozklad.dom.getElementsByTagName('a')]);
-  
   const incorrectGroup = groupRozklad
     .getByTag('span')
     .some(element => element.textContent === 'Групи з такою назвою не знайдено!');
@@ -53,7 +51,6 @@ rozklad.group = async group => {
           result.locationLink = links[links.length - 1].href;
           links.splice(-1, 1);
         }
-        console.log(links);
         result.teachers = [];
         links.forEach(link => {
           if (link.href.includes('Schedules')) {
@@ -69,8 +66,6 @@ rozklad.group = async group => {
       }
       return result;
     })))
-
-  console.dir([firstWeek, secondWeek], { depth: null, showHidden: true });
 
   return [firstWeek, SecondWeek];
 
