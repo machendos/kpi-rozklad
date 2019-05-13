@@ -18,8 +18,6 @@ const db = new Proxy({}, {
       let query = `SELECT ${name}(`;
       args.slice(0, -1).forEach((arg, index) => query += `$${index + 1}, `);
       query += `$${args.length});`;
-      console.log(query);
-      console.log(args);
       try {
         const result = await pool.query(query, args);
       } catch(e) {
